@@ -94,10 +94,10 @@ const onImageCardClick = event => {
     event.preventDefault();
     }
  const clickedImage = event.target.closest(".gallery-image");
-    const largeImageUrl = clickedImage.dataset.source;
+    const largeImageJpg = clickedImage.dataset.source;
     
      const instance = basicLightbox.create(`
-    <img src="${largeImageUrl}" width="800" height="600">
+    <img src="${largeImageJpg}" width="800" height="600">
   `);
 
      instance.show();
