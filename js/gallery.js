@@ -91,13 +91,11 @@ galleryItems.forEach((item, index) => {
 
 const onImageCardClick = event => {
   event.preventDefault();
-  if (!event.target.classList.contains === ("gallery-image")) {
-    return;
-    }
- const clickedImage = event.target.closest(".gallery-image");
-    const largeImageJpg = clickedImage.dataset.source;
+  if (!event.target.classList.contains("gallery-image")) return;
+
+const largeImageJpg = event.target.dataset.source;
     
-     const instance = basicLightbox.create(`
+const instance = basicLightbox.create(`
     <img src="${largeImageJpg}" width="800" height="600">
   `);
 
