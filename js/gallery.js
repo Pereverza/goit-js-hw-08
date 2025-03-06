@@ -5,7 +5,7 @@ const refs = {
 const images = [
   {
     preview:
-      "https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg",
+      "https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__340.jpg",
     original:
       "https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820_1280.jpg",
     description: "Hokkaido Flower",
@@ -69,8 +69,8 @@ const images = [
 ];
 
 const galleryCardList = images => {
-    return `<li class="gallery-item">
-  <a class="gallery-link" href="large-image.jpg">
+  return `<li class="gallery-item js-gallery-item">
+  <a class="gallery-link" src="large-image.jpg">
     <img
       class="gallery-image"
       src="${images.preview}"
@@ -80,8 +80,36 @@ const galleryCardList = images => {
   </a>
 </li>`;
 };
-const imagesTemplateList = images.map(image => galleryCardList(image)).join('');
+const imagesTemplateList = images.map(galleryCardList).join("");
 refs.galleryList.innerHTML = imagesTemplateList;
+
+const galleryItems = document.querySelectorAll(".js-gallery-item");
+galleryItems.forEach((item, index) => {
+  item.id = `item-${index + 1}`;
+
+});
+
+const onImageCardClick = event => {
+  if (event.target === event.currentTarget) {
+    event.preventDefault();
+    }
+ const clickedImage = event.target.closest(".gallery-image");
+    const largeImageUrl = clickedImage.dataset.source;
+    
+     const instance = basicLightbox.create(`
+    <img src="${largeImageUrl}" width="800" height="600">
+  `);
+
+     instance.show();
+};
+refs.galleryList.addEventListener("click", onImageCardClick);
+
+
+
+
+
+
+
 
 
 
