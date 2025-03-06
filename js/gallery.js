@@ -70,7 +70,7 @@ const images = [
 
 const galleryCardList = images => {
   return `<li class="gallery-item js-gallery-item">
-  <a class="gallery-link" src="large-image.jpg">
+  <a class="gallery-link" href="${images.original}">
     <img
       class="gallery-image"
       src="${images.preview}"
@@ -90,8 +90,9 @@ galleryItems.forEach((item, index) => {
 });
 
 const onImageCardClick = event => {
-  if (event.target === event.currentTarget) {
-    event.preventDefault();
+  event.preventDefault();
+  if (!event.target.classList.contains === ("gallery-image")) {
+    return;
     }
  const clickedImage = event.target.closest(".gallery-image");
     const largeImageJpg = clickedImage.dataset.source;
